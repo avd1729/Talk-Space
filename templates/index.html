@@ -9,8 +9,17 @@
     <h1>Welcome to My Social Media App</h1>
     {% if username %}
         <p>Hello, {{ username }}! <a href="/logout">Logout</a></p>
+        <a href="/add_post"><button>Create New Post</button></a>
     {% else %}
         <p>You are not logged in. <a href="/login">Login</a> or <a href="/register">Register</a>.</p>
     {% endif %}
+    <h2>Public Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li><strong>{{ post.title }}</strong>: {{ post.content }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
+
+

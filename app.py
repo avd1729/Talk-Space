@@ -16,6 +16,14 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    posts = db.relationship('Post', backref='user', lazy=True)
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 # Route for user registration
 
@@ -73,7 +81,33 @@ def logout():
 @app.route('/')
 def index():
     username = session.get('username')
-    return render_template('index.html', username=username)
+    posts = Post.query.all()
+    return render_template('index.html', username=username, posts=posts)
+
+# Route for adding new post
+
+
+# Route for adding new post
+@app.route('/add_post', methods=['GET', 'POST'])
+def add_post():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        # Retrieve the current user from the database
+        user = User.query.filter_by(username=session['username']).first()
+
+        # Check if the user exists
+        if user:
+            # Create a new post associated with the current user
+            new_post = Post(title=title, content=content, user_id=user.id)
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect(url_for('index'))
+        else:
+            # Handle error if the user does not exist
+            return "User not found"
+
+    return render_template('add_post.html')
 
 
 if __name__ == "__main__":
