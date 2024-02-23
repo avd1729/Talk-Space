@@ -10,7 +10,8 @@
     {% if username %}
         <p>Hello, {{ username }}! <a href="/logout">Logout</a></p>
         <a href="/add_post"><button>Create New Post</button></a>
-        <form action="/search" method="POST">
+        <a href="/update_profile"><button>Update Profile</button></a>
+        <form action="/search" method="post" style="display: inline;">
             <input type="text" name="search_query" placeholder="Search users...">
             <button type="submit">Search</button>
         </form>
@@ -20,11 +21,9 @@
     <h2>Public Posts</h2>
     <ul>
         {% for post in posts %}
+            <!-- Display both post title, content, and author's username -->
             <li><strong>{{ post.title }}</strong>: {{ post.content }}</li>
         {% endfor %}
     </ul>
 </body>
 </html>
-
-
-

@@ -106,6 +106,73 @@ def user_posts(user_id):
     return render_template('user_posts.html', user=user, posts=posts)
 
 
+@app.route('/add_post', methods=['GET', 'POST'])
+def add_post():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        # Assuming user authentication is implemented and user is retrieved from session
+        author = User.query.filter_by(username=session['username']).first()
+
+        new_post = Post(title=title, content=content, user_id=author.id)
+        db.session.add(new_post)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+    return render_template('add_post.html')
+
+# Route to view and update user profile
+
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    username = session.get('username')
+    user = User.query.filter_by(username=username).first()
+
+    if request.method == 'POST':
+        # Handle form submission to update profile
+        user.username = request.form['username']
+        user.email = request.form['email']
+        # Add additional fields as needed
+
+        db.session.commit()
+        return redirect(url_for('profile'))
+
+    return render_template('profile.html', user=user)
+
+# Route for updating user profile
+
+
+# Route for updating user profile
+@app.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
+    username = session.get('username')
+    user = User.query.filter_by(username=username).first()
+
+    if request.method == 'POST':
+        # Handle form submission to update profile
+        new_username = request.form['username']
+        user.email = request.form['email']
+        # Add additional fields as needed
+
+        # Update the username in all posts associated with the user
+        old_username = user.username
+        user.username = new_username
+        for post in user.posts:
+            post.author = new_username
+
+        db.session.commit()
+
+        # Optional: You may want to update the session username if it's changed
+        session['username'] = new_username
+
+        # Redirect to profile page after update
+        return redirect(url_for('profile'))
+
+    return render_template('update_profile.html', user=user)
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
