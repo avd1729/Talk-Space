@@ -10,6 +10,10 @@
     {% if username %}
         <p>Hello, {{ username }}! <a href="/logout">Logout</a></p>
         <a href="/add_post"><button>Create New Post</button></a>
+        <form action="/search" method="POST">
+            <input type="text" name="search_query" placeholder="Search users...">
+            <button type="submit">Search</button>
+        </form>
     {% else %}
         <p>You are not logged in. <a href="/login">Login</a> or <a href="/register">Register</a>.</p>
     {% endif %}
@@ -21,5 +25,6 @@
     </ul>
 </body>
 </html>
+
 
 

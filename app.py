@@ -75,39 +75,35 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-# Route for index page
+# Route for searching users
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        search_query = request.form['search_query']
+        users = User.query.filter(
+            User.username.ilike(f'%{search_query}%')).all()
+        return render_template('search_results.html', users=users, search_query=search_query)
+    return redirect(url_for('index'))
+
+# Modified index route to fetch posts from all users
 
 
 @app.route('/')
 def index():
     username = session.get('username')
-    posts = Post.query.all()
+    posts = Post.query.all()  # Fetch posts from all users
     return render_template('index.html', username=username, posts=posts)
 
-# Route for adding new post
+# Route to view posts of a specific user
 
 
-# Route for adding new post
-@app.route('/add_post', methods=['GET', 'POST'])
-def add_post():
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-        # Retrieve the current user from the database
-        user = User.query.filter_by(username=session['username']).first()
-
-        # Check if the user exists
-        if user:
-            # Create a new post associated with the current user
-            new_post = Post(title=title, content=content, user_id=user.id)
-            db.session.add(new_post)
-            db.session.commit()
-            return redirect(url_for('index'))
-        else:
-            # Handle error if the user does not exist
-            return "User not found"
-
-    return render_template('add_post.html')
+@app.route('/user/<int:user_id>')
+def user_posts(user_id):
+    user = User.query.get_or_404(user_id)
+    posts = user.posts
+    return render_template('user_posts.html', user=user, posts=posts)
 
 
 if __name__ == "__main__":
