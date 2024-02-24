@@ -6,6 +6,9 @@ Visit the [Talk Space website](https://deployment-h5if.onrender.com/)!
 
 TalkSpace is a social media application designed to provide users with a platform to share their thoughts, connect with others, and engage in meaningful discussions without the fear of judgment. Our app aims to foster a supportive and inclusive online community where users can express themselves freely and connect with like-minded individuals.
 
+![Screenshot 2024-02-24 161135](https://github.com/avd1729/Talk-Space/assets/94891044/fea591ca-dda9-4ef2-acb2-05bc13da3edf)
+
+
 ## Key Features
 
 - **User Registration and Authentication:** Users can create an account securely and log in to access the platform's features.
