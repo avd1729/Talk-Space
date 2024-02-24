@@ -82,7 +82,7 @@ That's it! You should now have the TalkSpace application up and running locally 
 
 ## API Documentation
 
-**Base URL:** The base URL for the TalkSpace API is [Base URL](https://deployment-h5if.onrender.com/)
+**POSTMAN COLLECTION:** The collection of testing all end points [Collection_url](https://www.postman.com/security-saganist-57293542/workspace/talk-space/collection/29049633-3ab24349-041a-4e2f-88d0-d7fb681c86d7?action=share&creator=29049633)
 
 **Authentication:** The API does not require authentication for public endpoints. However, some endpoints may require user authentication using a JWT token.
 
