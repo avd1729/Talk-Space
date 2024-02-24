@@ -124,4 +124,8 @@ That's it! You should now have the TalkSpace application up and running locally 
 
 This project is licensed under the Apache License - see the [LICENSE](https://github.com/avd1729/Talk-Space/blob/main/LICENSE) file for details.
 
+## Screenshots
+
+You can checkout the project screenshots here -  [SCREENSHOTS](https://github.com/avd1729/Talk-Space/blob/main/Screenshots.MD).
+
 
