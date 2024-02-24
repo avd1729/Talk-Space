@@ -84,7 +84,7 @@ That's it! You should now have the TalkSpace application up and running locally 
 
 ## API Documentation
 
-**Base URL:** The base URL for the TalkSpace API is [Home (talk-space-jd1v.onrender.com)](https://talk-space-jd1v.onrender.com/)
+**Base URL:** The base URL for the TalkSpace API is [Base URL](https://deployment-h5if.onrender.com/)
 
 **Authentication:** The API does not require authentication for public endpoints. However, some endpoints may require user authentication using a JWT token.
 
