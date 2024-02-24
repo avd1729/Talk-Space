@@ -4,13 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Posts</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* List styles */
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        li strong {
+            font-weight: bold;
+            color: #333;
+            font-size: 20px;
+        }
+
+        li p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>{{ user.username }}'s Posts</h1>
     <ul>
         {% for post in posts %}
-            <li><strong>{{ post.title }}</strong>: {{ post.content }}</li>
+            <li>
+                <strong>{{ post.title }}</strong>: {{ post.content }}
+            </li>
         {% endfor %}
     </ul>
 </body>
 </html>
+
