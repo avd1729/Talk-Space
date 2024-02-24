@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
@@ -105,13 +105,14 @@ def user_posts(user_id):
     posts = user.posts
     return render_template('user_posts.html', user=user, posts=posts)
 
+# Route to add a new post
+
 
 @app.route('/add_post', methods=['GET', 'POST'])
 def add_post():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        # Assuming user authentication is implemented and user is retrieved from session
         author = User.query.filter_by(username=session['username']).first()
 
         new_post = Post(title=title, content=content, user_id=author.id)
@@ -131,10 +132,8 @@ def profile():
     user = User.query.filter_by(username=username).first()
 
     if request.method == 'POST':
-        # Handle form submission to update profile
         user.username = request.form['username']
         user.email = request.form['email']
-        # Add additional fields as needed
 
         db.session.commit()
         return redirect(url_for('profile'))
@@ -144,19 +143,15 @@ def profile():
 # Route for updating user profile
 
 
-# Route for updating user profile
 @app.route('/update_profile', methods=['GET', 'POST'])
 def update_profile():
     username = session.get('username')
     user = User.query.filter_by(username=username).first()
 
     if request.method == 'POST':
-        # Handle form submission to update profile
         new_username = request.form['username']
         user.email = request.form['email']
-        # Add additional fields as needed
 
-        # Update the username in all posts associated with the user
         old_username = user.username
         user.username = new_username
         for post in user.posts:
@@ -164,13 +159,13 @@ def update_profile():
 
         db.session.commit()
 
-        # Optional: You may want to update the session username if it's changed
         session['username'] = new_username
 
-        # Redirect to profile page after update
         return redirect(url_for('profile'))
 
     return render_template('update_profile.html', user=user)
+
+# Route for deleting a post
 
 
 @app.route('/delete_post/<int:post_id>', methods=['POST'])
@@ -179,6 +174,53 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('index'))
+
+# Route to list all users
+
+
+@app.route('/users')
+def get_users():
+    users = User.query.all()
+    user_list = [{'id': user.id, 'username': user.username,
+                  'email': user.email} for user in users]
+    return jsonify({'users': user_list})
+
+# Route to search for a user by username
+
+
+@app.route('/users/<string:username>')
+def search_user(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user_info = {'id': user.id,
+                     'username': user.username, 'email': user.email}
+        return jsonify({'user': user_info})
+    else:
+        return jsonify({'message': 'User not found'}), 404
+
+# Route to list all posts
+
+
+@app.route('/posts')
+def get_posts():
+    posts = Post.query.all()
+    post_list = [{'id': post.id, 'title': post.title, 'content': post.content,
+                  'author': post.user.username} for post in posts]
+    return jsonify({'posts': post_list})
+
+# Route to list all posts by a particular user
+
+
+@app.route('/users/<string:username>/posts')
+def get_user_posts(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        posts = user.posts
+        post_list = [{'id': post.id, 'title': post.title,
+                      'content': post.content} for post in posts]
+        return jsonify({'posts': post_list})
+    else:
+        return jsonify({'message': 'User not found'}), 404
 
 
 if __name__ == "__main__":
