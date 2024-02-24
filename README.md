@@ -19,8 +19,6 @@ TalkSpace is a social media application designed to provide users with a platfor
 
 The TalkSpace application has been deployed to a live server, allowing users to access the platform from any device with an internet connection. Our deployment ensures a seamless user experience and ensures that users can enjoy the full range of features offered by the app.
 
-## Join TalkSpace today and be a part of our vibrant and supportive community!
-
 ## Architecture
 
 ### Frontend
