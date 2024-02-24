@@ -4,20 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation styles */
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            display: inline-block; /* Align links horizontally */
+        }
+
+        nav a:hover {
+            color: #0056b3;
+        }
+
+        /* Search form styles */
+        form {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Post list styles */
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        li strong {
+            font-weight: bold;
+            color: #333;
+            font-size: 20px;
+        }
+
+        li p {
+            color: #666;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Improve welcome section */
+        .welcome-section {
+            margin-bottom: 20px;
+            text-align: center; /* Center align welcome section */
+        }
+
+        .welcome-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Center align links */
+        .nav-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Social Media App</h1>
-    {% if username %}
-        <p>Hello, {{ username }}! <a href="/logout">Logout</a></p>
-        <a href="/add_post"><button>Create New Post</button></a>
-        <a href="/update_profile"><button>Update Profile</button></a>
-        <form action="/search" method="post" style="display: inline;">
+    <div class="welcome-section">
+        <h1>Welcome to TalkSpace</h1>
+        <h3>A social media application where you can post your thoughts without anyone judging you :)</h3>
+        {% if username %}
+            <p>Hello, {{ username }}!</p>
+        {% else %}
+            <p>You are not logged in. <a href="/login">Login</a> or <a href="/register">Register</a>.</p>
+        {% endif %}
+    </div>
+    <nav class="nav-links">
+        <a href="/add_post">Create New Post</a>
+        <a href="/update_profile">Update Profile</a>
+        <form action="/search" method="post">
             <input type="text" name="search_query" placeholder="Search users...">
-            <button type="submit">Search</button>
+            <input type="submit" value="Search">
         </form>
-    {% else %}
-        <p>You are not logged in. <a href="/login">Login</a> or <a href="/register">Register</a>.</p>
-    {% endif %}
+        {% if username %}
+            <a href="/logout">Logout</a>
+        {% endif %}
+    </nav>
     <h2>Public Posts</h2>
     <ul>
         {% for post in posts %}

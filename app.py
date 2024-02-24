@@ -173,6 +173,14 @@ def update_profile():
     return render_template('update_profile.html', user=user)
 
 
+@app.route('/delete_post/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
