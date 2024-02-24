@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:rootpass@localhost/db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.app_context().push()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
 app.config['SECRET_KEY'] = 'uihfdher387294730'
 
 db = SQLAlchemy(app)
