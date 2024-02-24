@@ -126,6 +126,6 @@ This project is licensed under the Apache License - see the [LICENSE](https://gi
 
 ## Screenshots
 
-You can checkout the project screenshots here -  [SCREENSHOTS](https://github.com/avd1729/Talk-Space/blob/main/Screenshots.MD).
+You can checkout the project screenshots here -  [SCREENSHOTS](https://github.com/avd1729/Talk-Space/blob/main/Screenshots.md).
 
 
