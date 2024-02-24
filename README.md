@@ -80,6 +80,11 @@ That's it! You should now have the TalkSpace application up and running locally 
 7. **View User Posts:** You can view posts from a specific user by clicking on their username or navigating to `/user/<username>`.
 8. **Logout:** To log out of your account, simply click on the "Logout" link.
 
+## Database Schema
+
+![Screenshot 2024-02-24 164422](https://github.com/avd1729/Talk-Space/assets/94891044/e2ed94db-735f-49cd-bbc9-fe43af3869f8)
+
+
 ## API Documentation
 
 **POSTMAN COLLECTION:** The collection of testing all end points [Collection_url](https://www.postman.com/security-saganist-57293542/workspace/talk-space/collection/29049633-3ab24349-041a-4e2f-88d0-d7fb681c86d7?action=share&creator=29049633)
