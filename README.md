@@ -120,4 +120,8 @@ That's it! You should now have the TalkSpace application up and running locally 
         - **`name`** (string): Username of the user whose posts to retrieve.
     - **Response:** JSON array containing post objects created by the specified user.
 
+## License
+
+This project is licensed under the Apache License - see the [LICENSE](https://github.com/avd1729/Talk-Space/blob/main/LICENSE) file for details.
+
 
