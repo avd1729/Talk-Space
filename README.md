@@ -56,7 +56,7 @@ To install and run the TalkSpace application, follow these steps:
     pip install -r requirements.txt
     ```
 
-3. **Set Up the Database:** TalkSpace appears to use a MySQL database. Ensure you have MySQL installed and running locally. Create a new MySQL database for the application, and update the `SQLALCHEMY_DATABASE_URI` in the `app.py` file to point to your MySQL database.
+3. **Set Up the Database:** TalkSpace appears to use a SQLite database. You can also have MySQL installed and running locally. Create a new MySQL database for the application, and update the `SQLALCHEMY_DATABASE_URI` in the `app.py` file to point to your MySQL database.
 
 4. **Run the Application:** Once the database is set up and the dependencies are installed, you can run the Flask application. Typically, you'd execute the `app.py` file:
 
