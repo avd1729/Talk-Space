@@ -1,4 +1,4 @@
-# Talk Space
+## Talk Space
 
 ## Introduction to TalkSpace
 
@@ -13,7 +13,6 @@ TalkSpace is a social media application designed to provide users with a platfor
 - **Post Creation and Sharing:** Users can create posts to share their thoughts, ideas, and experiences with the community.
 - **Profile Management:** Users have the ability to update their profile information, including their username and email.
 - **Search Functionality:** Users can search for other users by username and discover new connections.
-- **User Interaction:** Users can engage with posts by liking, commenting, and sharing them.
 - **User Privacy:** Our app prioritizes user privacy and provides tools for users to manage their account settings and privacy preferences.
 
 ## Deployment
@@ -56,7 +55,7 @@ To install and run the TalkSpace application, follow these steps:
     pip install -r requirements.txt
     ```
 
-3. **Set Up the Database:** TalkSpace appears to use a SQLite database. You can also have MySQL installed and running locally. Create a new MySQL database for the application, and update the `SQLALCHEMY_DATABASE_URI` in the `app.py` file to point to your MySQL database.
+3. **Set Up the Database:** TalkSpace uses a SQLite database. You can also have MySQL installed and running locally. Create a new MySQL database for the application, and update the `SQLALCHEMY_DATABASE_URI` in the `app.py` file to point to your MySQL database.
 
 4. **Run the Application:** Once the database is set up and the dependencies are installed, you can run the Flask application. Typically, you'd execute the `app.py` file:
 
@@ -76,7 +75,7 @@ That's it! You should now have the TalkSpace application up and running locally 
 2. **Login:** After registering, or if you already have an account, click on the "Login" link and enter your username and password to log into your account.
 3. **Create New Post:** Once logged in, you can create a new post by clicking on the "Create New Post" link. Enter a title and the content of your post, then submit the form.
 4. **Update Profile:** You can update your profile information by clicking on the "Update Profile" link. Update your username, email, or any other details as needed, then submit the form to save the changes.
-5. **View Public Posts:** On the homepage, you can view public posts from all users. These posts include the title, content, and the username of the author.
+5. **View Public Posts:** On the homepage, you can view public posts from all users. These posts include the title and content.
 6. **Search Users:** Use the search functionality to find other users by their username. Enter the username you want to search for in the search bar and click "Search" to see the results.
 7. **View User Posts:** You can view posts from a specific user by clicking on their username or navigating to `/user/<username>`.
 8. **Logout:** To log out of your account, simply click on the "Logout" link.
