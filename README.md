@@ -38,7 +38,7 @@ The TalkSpace application has been deployed to a live server, allowing users to 
 
 ### Database
 
-- **MySQL Database:** TalkSpace uses a MySQL database to store user information, posts, and other application data.
+- **SQLite Database:** TalkSpace uses a SQLite database to store user information, posts, and other application data.
 
 ## Installation
 
